@@ -57,7 +57,7 @@ function ProfileDropdown() {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <button
         onClick={toggleDropdown}
         className="flex items-center text-gray-700 hover:text-gray-900 focus:outline-none"
@@ -94,9 +94,9 @@ function ProfileDropdown() {
       />
 
       {isOpen && (
-        <div className="absolute right-0 m-2 w-48 bg-white rounded-md shadow-lg z-10">
-          <div className="py-1">
-            <div className="flex items-center">
+        <div className="absolute z-10 right-0 m-2 w-48 bg-white rounded-md shadow-lg ">
+          <div className=" py-1">
+            <div className="flex items-center relative z-10 ">
               <label htmlFor="profile-picture-upload">
                 {profileDetails ? (
                   <img
