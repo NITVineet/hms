@@ -2,7 +2,7 @@ const express = require('express');
 const { signUp, login, logout, emailVerification, otpcheck, forgotpassword, ResetPassword, uploadProfile, fetchUserProfile } = require('../controllers/auth.controller');
 const Complaint = require('./complaintRoute');
 const menu = require('../controllers/Messmenu');
-const { getMenu } = require('../controllers/GetMenu');
+const { getMenu, handletRebate } = require('../controllers/GetMenu');
 const { getallhostels, addHostel, gethostel } = require('../controllers/Hostelscontroller'); // Import getallhostels directly
 const createAnnouncement = require('../controllers/CreateAnnouncement');
 const getAnnouncements = require('../controllers/GetAnnouncement');
@@ -29,6 +29,7 @@ const joinGroup = require('../controllers/JoinGroup');
 const { uploadMiddleware } = require('../controllers/uploadMiddleware');
 
 const multer = require("multer");
+const getStudentsAccounts = require('../controllers/GetStudentsAccounts');
 // const { uploadMiddleware } = require("../controllers/uploadMiddleware");
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -49,11 +50,12 @@ router.get("/getallcomplaints", getComplaint.getAllComplaint);
 router.post("/getcomplaint", getComplaint.getComplaint);
 router.post("/setmenu", menu);
 router.post("/getmenu", getMenu);
+router.post("/rebate", handletRebate);
 router.post("/addhostel", addHostel);
 router.post("/createworker", createWorker);
 router.post("/getworker", getWorker);
 router.get("/getallstudent", getStudent);
-router.post("/updateStudent", updateStudent);
+router.put("/updateStudent", updateStudent);
 router.post("/createannouncement", createAnnouncement);
 router.post('/getannouncements', getAnnouncements);
 router.post('/send', createMessage);
@@ -61,6 +63,7 @@ router.post('/createGroup', createGroup);
 router.post('/userpaid', updateUserPaid);
 router.get('/getgroup', getGroups);
 router.get('/getusergroups/:user_id', getusergroup);
+router.get('/getstudentsaccounts/:hostel_no',getStudentsAccounts);
 router.post('/joingroup',joinGroup);
 router.post('/formtransaction', formTransaction);
 router.post('/updatetransactionstatus',updateTransactionStatus);

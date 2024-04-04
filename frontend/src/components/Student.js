@@ -105,24 +105,24 @@ export default function Student() {
                 <div className="grid gap-6 md:gap-12">
                   <div className="space-y-4">
                     <div className="text-center">
-                      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-black dark:text-black-100">
+                      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-black ">
                         Student Information
                       </h1>
                     </div>
                     <div className="relative w-full sm:w-64">
                       <FontAwesomeIcon
                         icon={faSearch}
-                        className="absolute left-2.5 top-2.5 h-4 w-4 text-blue-500 dark:text-blue-400"
+                        className="absolute left-2.5 top-2.5 h-4 w-4 text-blue-500 "
                       />
                       <input
-                        className="pl-8 w-full border border-blue-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300 bg-gray-700 text-white dark:bg-gray-900 dark:text-gray-100 bg-opacity-"
+                        className="pl-8 w-full border border-blue-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300 bg-gray-700 text-white   bg-opacity-"
                         placeholder="Search..."
                         type="search"
                       />
                     </div>
                     <div className="overflow-x-auto">
                       <table className="w-full border border-gray-200 rounded-md overflow-hidden">
-                        <thead className="bg-teal-300 dark:bg-gray-800">
+                        <thead className="bg-teal-300 ">
                           <tr className="text-black">
                             <th className="py-2 px-4 text-center ">Sr.No.</th>
                             <th className="py-2 px-4">Name</th>
@@ -147,6 +147,8 @@ export default function Student() {
                                 Room={student.room_number}
                                 hostel_no={student.hostel_no}
                                 handleDataUpdate={handleDataUpdate}
+                                userId={student._id}
+                                fetchStudent={fetchStudent}
                               />
                             ))}
                         </tbody>
@@ -171,6 +173,8 @@ function TableRow({
   Room,
   hostel_no,
   handleDataUpdate,
+  userId,
+  fetchStudent
 }) {
   // ...
   const [editingRowId, setEditingRowId] = useState(null);
@@ -180,13 +184,13 @@ function TableRow({
 
   const handleEditClick = () => {
     setEditingRowId(id);
-    setEditingData({ name, email, Roll, Room, hostel_no });
+    setEditingData({ name, email, Roll, Room, hostel_no,userId });
   };
-
   const handleSaveClick = async () => {
     try {
+      console.log("kjsd"+name+ email+ Roll+ Room+"id"+userId)
       const response = await fetch(
-        `http://localhost:5000/api/auth/updatestudent/${id}`,
+        `http://localhost:5000/api/auth/updatestudent`,
         {
           method: "PUT",
           headers: {
@@ -203,6 +207,8 @@ function TableRow({
         setEditingData({});
         // Call a function in the parent component to update the studentsData state
         handleDataUpdate(id, updatedData);
+        fetchStudent()
+
       } else {
         console.error(response.statusText);
       }

@@ -10,18 +10,34 @@ import {
   faUsersCog,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import ComplaintForm from "./ComplaintForm";
+
 
 import Sidebardashboard from "./sidebardashboard";
 
 function Dashboard() {
   const { hostel_no } = useParams();
   const [loading, setLoading] = useState(true);
-  const [showComponent, setShowComponent] = useState(false);
   const [hostelData, setHostelData] = useState([]);
   const [complaints, setComplaints] = useState([]);
   const [collectedFee, setTotalCollection] = useState(30);
   const [expectedFee, setExpectedCollection] = useState(30);
+  const [showInputBox, setShowInputBox] = useState(false);
+  const [dueInput, setDueInput] = useState("");
+
+  const handleAddDueClick = () => {
+    setShowInputBox(true);
+  };
+
+  const handleDueInputChange = (e) => {
+    setDueInput(e.target.value);
+  };
+
+  const handleSubmitDue = () => {
+    // Handle submit due logic here
+    console.log("Submitted due:", dueInput);
+    setDueInput("");
+    setShowInputBox(false);
+  };
 
   useEffect(() => {
     const fetchHostelData = async () => {
@@ -131,9 +147,7 @@ console.log('Occupancy Data:', occupancyData);
     }
   };
 
-  const toggleComplaintForm = () => {
-    setShowComponent(!showComponent);
-  };
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -144,6 +158,7 @@ console.log('Occupancy Data:', occupancyData);
       <div className="container mx-auto">
         <div className="flex justify-center items-start gap-8 mt-2">
           <Sidebardashboard hostel_no={hostel_no}/>
+         
           <div className="w-full md:w-5/6 bg-white p-8 rounded-xl bg-opacity-60">
             <div className="flex justify-center">
               <h1 className="text-black text-2xl font-bold item-center mb-4 mt-0">
@@ -317,21 +332,16 @@ console.log('Occupancy Data:', occupancyData);
                   </div>
                 </div>
               </div>
-              <div className="fixed bottom-8 left-8">
-                <button
-                  className="bg-blue-500 hover:bg-blue-600 text-black py-2 px-4 rounded-full transition duration-300"
-                  onClick={toggleComplaintForm}
-                >
-                  <FontAwesomeIcon icon={faPlus} className="mr-1" />
-                  {showComponent
-                    ? "Close Complaint Form"
-                    : "Register New Complaint"}
-                </button>
-              </div>
+              <div className="mt-4 flex justify-end">
+                </div>
+       
+
+              
             </div>
+           
           </div>
         </div>
-        {showComponent && <ComplaintForm />}
+        
       </div>
     </div>
   );

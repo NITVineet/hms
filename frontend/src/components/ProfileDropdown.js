@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ComplaintForm from "./ComplaintForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCreditCard, faPlus, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function ProfileDropdown() {
+  const isAdmin = localStorage.getItem("admin") === "true";
+  const isSuperAdmin = localStorage.getItem("superadmin") === "true";
+  const isCookie = localStorage.getItem("cookie");
   const [isOpen, setIsOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
   const [profileDetails, setProfileDetails] = useState(null);
@@ -57,7 +63,7 @@ function ProfileDropdown() {
   }, []);
 
   return (
-    <div className="relative ">
+    <div className="relative z-20">
       <button
         onClick={toggleDropdown}
         className="flex items-center text-gray-700 hover:text-gray-900 focus:outline-none"
@@ -119,12 +125,19 @@ function ProfileDropdown() {
               )}
             </div>
             <hr />
-            <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-              Profile
-            </button>
-            <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  onClick={toggleComplaintForm}>
+            
+            {!isSuperAdmin && !isAdmin && <button className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full flex justify-start"  onClick={toggleComplaintForm}>
+            <FontAwesomeIcon icon={faPlus} className="mr-1 mt-1 bg-white text-purple-600 text-sm " />
                 Add Complaints
-            </button>
+            </button>}
+  
+            {!isSuperAdmin && !isAdmin && <Link
+            to="/payment"
+            className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full flex justify-start "
+          ><FontAwesomeIcon icon={faCreditCard} className="mr-1 mt-1 bg-white text-purple-600 text-sm " />Make a Payment
+
+           
+          </Link>}
             <button
               onClick={async () => {
                 try {
@@ -146,8 +159,9 @@ function ProfileDropdown() {
                   console.error("Error logging out:", error);
                 }
               }}
-              className="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100"
+              className="block px-2 py-2 text-sm text-red-700 hover:bg-gray-100 w-full flex justify-start"
             >
+              <FontAwesomeIcon icon={faSignIn} className="mr-1 mt-1 bg-white text-purple-600 text-sm " />
               Logout
             </button>
           </div>

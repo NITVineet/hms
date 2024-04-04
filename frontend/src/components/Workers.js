@@ -54,7 +54,7 @@ export default function Workers() {
                         className="absolute left-2.5 top-2.5 h-4 w-4 text-blue-500 "
                       />
                       <input
-                        className="pl-8 w-full border border-blue-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300 bg-gray-700 text-white dark:bg-gray-900 dark:text-gray-100 bg-opacity-"
+                        className="pl-8 w-full border border-blue-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300 bg-gray-700 text-white   bg-opacity-"
                         placeholder="Search..."
                         type="search"
                       />
@@ -67,6 +67,7 @@ export default function Workers() {
                             <th className="py-2 px-4 text-center">Name</th>
                             <th className="py-2 px-4 text-center">Email</th>
                             <th className="py-2 px-4 text-center">Contact</th>
+                            <th className="py-2 px-4 text-center">Hostel</th>
                             <th className="py-2 px-4 text-center">Post</th>
                           </tr>
                         </thead>
@@ -88,13 +89,14 @@ export default function Workers() {
   );
 }
 
-function TableRow({ index, w_name, w_email, contact_no, w_post }) {
+function TableRow({ index, w_name, w_email, contact_no,hostel_no, w_post }) {
   return (
     <tr className="text-black bg-white rounded-lg my-4">
       <td className="py-4 px-4 text-center rounded-l-lg md:rounded-none">{index}</td>
       <td className="py-4 px-4 text-center">{w_name}</td>
       <td className="py-4 px-4 text-center">{w_email}</td>
       <td className="py-4 px-4 text-center">{contact_no}</td>
+      <td className="py-4 px-4 text-center">{hostel_no}</td>
       <td className="py-4 px-4 text-center rounded-r-lg md:rounded-none">{w_post}</td>
     </tr>
   );

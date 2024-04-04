@@ -46,7 +46,8 @@ import ProfileDropdown from "./components/ProfileDropdown";
 
 function App() {
   const contactsSectionRef = useRef(null);
-  const [responseMsg, setResponseMsg] = useState('');
+  const [responseMsg, setResponseMsg] = useState("");
+  const [responseType, setResponseType] = useState("error");
 
   const scrollToContacts = () => {
     if (contactsSectionRef.current) {
@@ -76,10 +77,10 @@ function App() {
 
       response.text().then((text) => {
         setResponseMsg(text);
-        console.log(text); 
+        console.log(text);
       });
       if (response.ok) {
-
+        setResponseType("success");
         const jwtCookie = document.cookie
           .split("; ")
           .find((row) => row.startsWith("jwt="));
@@ -122,12 +123,11 @@ function App() {
           if (isSuperAdmin) {
             // Redirect to the admin dashboard
             window.location.href = "/admindashboard";
-          } else if(isAdmin) {
+          } else if (isAdmin) {
             // Redirect to the user dashboard
             window.location.href = `/admindashboard/${hostel_no}`;
-          }else{
+          } else {
             window.location.href = "/";
-
           }
         } else {
           console.log("JWT cookie not found");
@@ -156,7 +156,13 @@ function App() {
           <Route path="/announcement" element={<Announcement />} />
           <Route
             path="/login"
-            element={<Login handleSubmit={handleSubmit} responseMsg={responseMsg}/>}
+            element={
+              <Login
+                handleSubmit={handleSubmit}
+                responseType={responseType}
+                responseMsg={responseMsg}
+              />
+            }
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/admindashboard/Student" element={<Student />} />
@@ -203,6 +209,7 @@ function App() {
           <Route path="/forgotpassword" element={<Forgotpassword />} />
           <Route path="/reset-password" element={<ResetPassword1 />} />
           <Route path="/profiledropdown" element={<ProfileDropdown />} />
+          <Route path="/payment" element={<TransactionStudent />} />
         </Routes>
         <Footer />
       </Router>
