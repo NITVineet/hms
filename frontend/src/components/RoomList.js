@@ -13,7 +13,7 @@ function RoomList() {
     const updateRoomAvailability = async() => {
         let updatedAvailability = [...roomAvailability]; // Initialize outside the loop
         
-        for (let floor = 4; floor < 6; floor++) {
+        for (let floor = 1; floor < 3; floor++) {
             for (let roomNumber = 1; roomNumber <= roomsPerFloor; roomNumber++) {
                 const roomIndex = roomNumber + (roomsPerFloor * (floor - 1)) - 1;
                 const roomStatus = roomAvailability[roomIndex];
@@ -31,6 +31,7 @@ function RoomList() {
                             'Content-Type': 'application/json',
                             // Add any additional headers if required
                         },
+                        
                         body: JSON.stringify({ room_number: roomNumber1, hostel_no: hostel_no }), // Send room_no and hostel_no in the request body
                         // You can add other options like credentials, etc., if needed
                     });

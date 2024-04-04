@@ -84,7 +84,7 @@ export default function Contacts({ changeChat }) {
             alt="logo"
             className="h-12"
           />
-          <h3 className="text-white uppercase">snappy</h3>
+          <h3 className="text-white uppercase ml-4">CHAT it</h3>
         </div>
         <div className="overflow-auto max-h-[78vh] scrollbar-thin scrollbar-thumb-white  bg-white">
           {userGroups.map((group, index) => (
@@ -120,7 +120,7 @@ export default function Contacts({ changeChat }) {
                     </div>
                     <h3 className="text-black">{group.group_name}</h3>
                   </div>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={(e) => { handleJoin(group._id) }}>Join Now</button>
+                  <button className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={(e) => { handleJoin(group.group_id) }}>Join Now</button>
                 </div>
               ))}
             </div>

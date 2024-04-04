@@ -39,6 +39,33 @@ function Dashboard() {
     setShowInputBox(false);
   };
 
+  function HostelWorkers() {
+   
+
+    let workersPresent;
+
+    switch (hostel_no) {
+        case 'H1':
+            workersPresent = 35;
+            break;
+        case 'H3':
+            workersPresent = 40;
+            break;
+        case 'H10':
+            workersPresent = 50;
+            break;
+        
+    }
+
+    return (
+        <div>
+           
+           <p className="text-xl text-black mt-4 mx-7 font-semibold">Total Workers : <span style={{ color: 'blue' }}>{workersPresent}</span></p>
+        </div>
+        
+    );
+}
+
   useEffect(() => {
     const fetchHostelData = async () => {
       try {
@@ -194,7 +221,7 @@ console.log('Occupancy Data:', occupancyData);
                     
                     
                     <p className="text-md text-black mt-2 mx-auto ">
-                      Occupied rooms:{hostelData.occupied_rooms}
+                      Occupied rooms : {hostelData.occupied_rooms}
                 
                     </p>
                   </div>
@@ -220,9 +247,28 @@ console.log('Occupancy Data:', occupancyData);
                       </div>
                     </div>
                     <p className="text-md text-black mt-2 mx-auto">
-                      Students present:{hostelData.students_present}
+                      Students present : {hostelData.students_present}
                     </p>
                   </div>
+                  <div className="bg-admin p-6 rounded-lg hover:shadow-2xl hover:bg-teal-300 transition ease-in-out duration-800 flex flex-col">
+                    <h2 className="text-xl text-black font-semibold mb-4 mx-auto ">
+                      Quantitative Analysis
+                    </h2>
+                    <div className="flex items-center justify-center">
+                      
+                    </div>
+                    <p className="text-xl text-black mt-4 mx-auto font-semibold">
+                      Total Rooms : <span style={{ color: 'blue' }}>{ hostelData.total_rooms}</span>
+                    </p>
+                    <p className="text-xl text-black mt-4 mx-auto font-semibold">
+                      Total Students : <span style={{ color: 'blue' }}>{hostelData.student_capacity}</span>
+                    </p>
+                    
+                    <HostelWorkers />
+                  </div>
+                  
+                  
+                  
                   {/* Additional Quick Insights */}
                   {/* <div className="bg-admin p-6 rounded-lg hover:shadow-2xl hover:bg-teal-300 transition ease-in-out duration-800 flex flex-col">
                     <h2 className="text-xl text-black font-semibold mb-4 mx-auto ">
@@ -288,6 +334,9 @@ console.log('Occupancy Data:', occupancyData);
               <h2 className="text-xl text-black font-semibold mb-4">
                 Fee Details
               </h2>
+              <h3 className="text-lg font-semibold mb-2  px-12 text-black">
+                Collected Fee
+              </h3>
               <div className="flex items-center space-x-40 px-10">
                 {/* Expected Fee */}
                 <div className="w-32 h-32 relative">

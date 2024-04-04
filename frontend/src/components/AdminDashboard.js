@@ -112,8 +112,8 @@ const AdminDashboard = () => {
 
           <div className="w-full md:w-5/6 bg-white p-8 rounded-xl bg-opacity-60">
             <div className="flex justify-center">
-              <h1 className="text-black text-2xl font-bold item-center mb-4 mt-0">
-                Welcome Sir !!
+              <h1 className="text-gray-800 text-2xl font-bold item-center mb-4 mt-0">
+                WELCOME TO HMS MANAGING DESK !!
               </h1>
             </div>
             <div className="bg-white p-4 rounded-xl">
@@ -232,23 +232,24 @@ const AdminDashboard = () => {
                 <div
                   className="h-14"
                   style={{
-                    width: `${20 / total}%`,
+                    // width: `${(20/50}%`,
+                    width: `${(10/total)}%`,
                     backgroundColor: "#fde047",
                   }}
                 ></div>
-                <div className="ml-4 text-black">
-                  <div className="flex justify-between">
-                    <div className="bg-blue-300 p-2  rounded-md">
+                <div className="ml-4 text-black flex flex-row space-x-8">
+                  <div className="flex justify-between space-x-20">
+                    <div className="flex flex-col bg-blue-300 px-4 py-2 rounded-xl hover:shadow-2xl hover:bg-teal-300 transition ease-in-out duration-800">
                       <p>Total Complaints</p>
-                      <p>{total}</p>
+                      <p className="text-center">{total}</p>
                     </div>
-                    <div className="bg-green-300 p-2  rounded-md">
+                    <div className="flex flex-col bg-green-300 px-4 py-2 rounded-xl hover:shadow-2xl hover:bg-teal-300 transition ease-in-out duration-800">
                       <p>Resolved Complaints</p>
-                      <p>{solved}</p>
+                      <p className="text-center">{solved}</p>
                     </div>
-                    <div className="bg-red-400 p-2  rounded-md">
+                    <div className="flex flex-col bg-red-400 px-4 py-2 rounded-xl hover:shadow-2xl hover:bg-teal-300 transition ease-in-out duration-800">
                       <p>Pending Complaints</p>
-                      <p>{unsolved}</p>
+                      <p className="text-center">{unsolved}</p>
                     </div>
                   </div>
                 </div>
@@ -262,3 +263,6 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+
+

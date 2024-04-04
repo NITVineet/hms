@@ -17,6 +17,7 @@ export default function Student() {
   const [studentsData, setStudentsData] = useState([]);
   const [editingRowId, setEditingRowId] = useState(null);
   const [editingData, setEditingData] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchStudent = async () => {
     try {
@@ -105,7 +106,7 @@ export default function Student() {
                 <div className="grid gap-6 md:gap-12">
                   <div className="space-y-4">
                     <div className="text-center">
-                      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-black ">
+                      <h1 className="text-3xl font-bold  text-gray-800 tracking-tight sm:text-4xl text-black ">
                         Student Information
                       </h1>
                     </div>
@@ -115,9 +116,11 @@ export default function Student() {
                         className="absolute left-2.5 top-2.5 h-4 w-4 text-blue-500 "
                       />
                       <input
-                        className="pl-8 w-full border border-blue-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300 bg-gray-700 text-white   bg-opacity-"
+                        className="pl-8 w-full border border-gray-500 rounded-md py-2 px-3 focus:outline-none   bg-Zinc-400 text-blue   "
                         placeholder="Search..."
                         type="search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                     <div className="overflow-x-auto">
@@ -136,21 +139,42 @@ export default function Student() {
                         </thead>
                         <tbody className="divide-y ">
                           {studentsData
-                            .filter((student) => student.hostel_no !== "0")
-                            .map((student, index) => (
-                              <TableRow
-                                key={index}
-                                id={index + 1}
-                                name={student.full_name}
-                                email={student.email}
-                                Roll={student.roll_no}
-                                Room={student.room_number}
-                                hostel_no={student.hostel_no}
-                                handleDataUpdate={handleDataUpdate}
-                                userId={student._id}
-                                fetchStudent={fetchStudent}
-                              />
-                            ))}
+                            .filter(
+                              (student) =>
+                                student.hostel_no !== "0" &&
+                                (student.full_name
+                                  .toLowerCase()
+                                  .includes(searchQuery.toLowerCase()) ||
+                                  student.email
+                                    .toLowerCase()
+                                    .includes(searchQuery.toLowerCase()) ||
+                                  student.roll_no
+                                    .toLowerCase()
+                                    .includes(searchQuery.toLowerCase()) ||
+                                  student.room_number
+                                    .toLowerCase()
+                                    .includes(searchQuery.toLowerCase()) ||
+                                  student.hostel_no
+                                    .toLowerCase()
+                                    .includes(searchQuery.toLowerCase()))
+                            )
+                            .map(
+                              (student, index) =>
+                                !student.admin && (
+                                  <TableRow
+                                    key={index}
+                                    id={index}
+                                    name={student.full_name}
+                                    email={student.email}
+                                    Roll={student.roll_no}
+                                    Room={student.room_number}
+                                    hostel_no={student.hostel_no}
+                                    handleDataUpdate={handleDataUpdate}
+                                    userId={student._id}
+                                    fetchStudent={fetchStudent}
+                                  />
+                                )
+                            )}
                         </tbody>
                       </table>
                     </div>
@@ -174,7 +198,7 @@ function TableRow({
   hostel_no,
   handleDataUpdate,
   userId,
-  fetchStudent
+  fetchStudent,
 }) {
   // ...
   const [editingRowId, setEditingRowId] = useState(null);
@@ -184,11 +208,11 @@ function TableRow({
 
   const handleEditClick = () => {
     setEditingRowId(id);
-    setEditingData({ name, email, Roll, Room, hostel_no,userId });
+    setEditingData({ name, email, Roll, Room, hostel_no, userId });
   };
   const handleSaveClick = async () => {
     try {
-      console.log("kjsd"+name+ email+ Roll+ Room+"id"+userId)
+      console.log("kjsd" + name + email + Roll + Room + "id" + userId);
       const response = await fetch(
         `http://localhost:5000/api/auth/updatestudent`,
         {
@@ -207,8 +231,7 @@ function TableRow({
         setEditingData({});
         // Call a function in the parent component to update the studentsData state
         handleDataUpdate(id, updatedData);
-        fetchStudent()
-
+        fetchStudent();
       } else {
         console.error(response.statusText);
       }
