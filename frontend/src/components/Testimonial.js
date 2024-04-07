@@ -6,8 +6,8 @@ const Testimonial = () => {
     const testimonial = [
         {
             url: '/sachin.png',
-            paragraph: 'Sachin Kedia is a passionate and dedicated developer with a keen eye for detail and a knack for problem-solving. With years of experience in software development, Sachin brings a wealth of expertise to every project he undertakes.',
-            name: '-Sachin Kedia'
+            paragraph: 'Sachin Kuldeep is a passionate and dedicated developer with a keen eye for detail and a knack for problem-solving. With years of experience in software development, Sachin brings a wealth of expertise to every project he undertakes.',
+            name: '-Sachin Kuldeep'
         },
         {
             url: '/yashraj.png',
@@ -15,14 +15,14 @@ const Testimonial = () => {
             name: '-Yash Raj Vishnoi'
         },
         {
-            url: '/sachin.png',
-            paragraph: 'Sachin Kedia is a passionate and dedicated developer with a keen eye for detail and a knack for problem-solving. With years of experience in software development, Sachin brings a wealth of expertise to every project he undertakes..',
-            name: 'Sachin Kedia3'
+            url: '/ansh.png',
+            paragraph: 'Ansh is a dedicated and enthusiastic developer known for his meticulous attention to detail and strong problem-solving skills. With extensive experience in software development, Ansh brings a wealth of expertise and creativity to every project he tackles.',
+            name: '-Ansh Goel'
         },
         {
-            url: '/sachin.png',
-            paragraph: 'Sachin Kedia is a passionate and dedicated developer with a keen eye for detail and a knack for problem-solving. With years of experience in software development, Sachin brings a wealth of expertise to every project he undertakes.',
-            name: 'Sachin Kedia4'
+            url: '/jay.png',
+            paragraph: 'Jay is an enthusiastic and committed developer renowned for his sharp attention to detail and adept problem-solving abilities. With years of hands-on experience in software development, Jay brings a vast wealth of knowledge and expertise to each project he embarks on',
+            name: '-Jay Kumar Gupta'
         }
     ];
 

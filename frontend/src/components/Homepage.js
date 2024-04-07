@@ -127,7 +127,7 @@ const HomePage = ({contactsSectionRef}) => {
 
         <div className="bg-gray-700 flex flex-row justify-around px-4 h-[60vh]  py-4">
           {/* Services Section */}
-          <div className="flex flex-col justify-center max-w-2/5 w-2/5 relative h-2/3 mr-4 animate-bounce">
+          <div className="flex flex-col justify-center max-w-2/5 w-2/5  h-2/3 mr-4 animate-bounce">
             <img src="/services.svg" alt="Services" className="w-full h-auto" />
           </div>
 

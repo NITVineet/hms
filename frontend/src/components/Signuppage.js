@@ -39,10 +39,11 @@ function Signup() {
     if(response.ok){
       //signup page 2 shoulbe visible now
       setType('success')
-      response.text().then((text) => {
-        setResponseMsg(text);
-        console.log(text);
-      });
+      // response.text().then((text) => {
+      //   setResponseMsg(text);
+      //   console.log(text);
+      // });
+      setSignupSuccess(true);
       setStep(2);
     }
   }

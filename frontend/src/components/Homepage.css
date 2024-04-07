@@ -1,16 +1,16 @@
-@keyframes bounce {
+@keyframes bounce1 {
     0% ,100%{
       transform: translateY(0.5vh);
     }
 
     50% {
-      transform: translateY(-0.7vh);
+      transform: translateY(-0.5vh);
   }
 }
   .animate-bounce {
-    animation: bounce 5s infinite;
+    animation: bounce1 1s infinite;
     animation-delay: 2s;
-    /* animation-duration: 2; */
+    animation-duration: 2s;
   }
   @keyframes bounce-horizontal {
     0%, 100% {

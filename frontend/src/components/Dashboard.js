@@ -60,7 +60,7 @@ function Dashboard() {
     return (
         <div>
            
-           <p className="text-xl text-black mt-4 mx-7 font-semibold">Total Workers : <span style={{ color: 'blue' }}>{workersPresent}</span></p>
+           <p className="text-xl text-black mt-4 mx-4 px-auto font-semibold">Total Workers : <span style={{ color: 'blue' }}>{workersPresent}</span></p>
         </div>
         
     );
